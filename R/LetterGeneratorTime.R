@@ -10,7 +10,7 @@ endNP <- Sys.time()
 Not.Parallel.time <- endNP - startNP
 
 #In Parallel
-numCores <- detectCores()
+numCores <- availableCores()
 cl <- makeCluster(numCores)  
 Parallel.Time <- system.time({
   Paralell.Output <- parSapply(cl, 1:100000, function(i){sample(LETTERS, 1)})
