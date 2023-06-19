@@ -2,7 +2,7 @@
 Random.letter <- function(){
   sample(LETTERS,1)
 }
-
+library(parallel)
 #Not in parallel
 startNP <- Sys.time()
 replicate(100000, Random.letter())
@@ -10,7 +10,7 @@ endNP <- Sys.time()
 Not.Parallel.time <- endNP - startNP
 
 #In Parallel
-numCores <- availableCores()
+numCores <- detectCores()
 cl <- makeCluster(numCores)  
 Parallel.Time <- system.time({
   Paralell.Output <- parSapply(cl, 1:100000, function(i){sample(LETTERS, 1)})
